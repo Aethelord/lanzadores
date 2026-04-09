@@ -28,9 +28,7 @@
           "background": "#120b1e",
           "on-background": "#f5f6f7",
         },
-        fontFamily: {
-          headline: ["Manrope"], body: ["Inter"]
-        }
+        fontFamily: { headline: ["Manrope"], body: ["Inter"] }
       }
     }
   }
@@ -40,7 +38,6 @@
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  /* ── Scroll por pantallas completas ── */
   .snap-container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
@@ -67,19 +64,15 @@
   .kinetic-gradient-blue   { background: linear-gradient(135deg,#0050d4,#00d2ff); }
   .kinetic-gradient-teal   { background: linear-gradient(135deg,#00675f,#00f2fe); }
   .kinetic-gradient-purple { background: linear-gradient(135deg,#6200ee,#ff00c1); }
-  .kinetic-gradient-sunset { background: linear-gradient(135deg,#ff4b2b,#ff416c); }
 
   body { font-family:'Inter',sans-serif; background:#120b1e; color:#fff; }
   h1,h2,h3 { font-family:'Manrope',sans-serif; }
 
   .section-control { background:#0a0614; }
-  .section-meyo { background: radial-gradient(circle at center,#2d004d,#1a0033,#0d001a); }
+  .section-meyo    { background: radial-gradient(circle at center,#2d004d,#1a0033,#0d001a); }
+  .section-future  { background: radial-gradient(circle at bottom right,#004d40,#002e2c,#001a1a); }
 
-  /* ════════════════════════════
-     ANIMACIONES
-  ════════════════════════════ */
-
-  /* Blobs flotantes */
+  /* Blobs */
   @keyframes blob {
     0%,100% { transform:translate(0,0) scale(1); }
     33%      { transform:translate(30px,-50px) scale(1.1); }
@@ -89,7 +82,7 @@
   .blob-b { animation: blob 28s ease-in-out infinite reverse; }
   .blob-c { animation: blob 18s ease-in-out infinite 4s; }
 
-  /* Entrada hero */
+  /* Entrada */
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(36px); }
     to   { opacity:1; transform:translateY(0); }
@@ -99,7 +92,7 @@
   .fu3 { opacity:0; animation: fadeUp 0.7s 0.35s ease forwards; }
   .fu4 { opacity:0; animation: fadeUp 0.7s 0.5s  ease forwards; }
 
-  /* Shimmer texto */
+  /* Shimmer */
   @keyframes shimmer {
     0%   { background-position:-200% center; }
     100% { background-position: 200% center; }
@@ -118,8 +111,15 @@
     background-clip:text;
     animation: shimmer 6s linear infinite;
   }
+  .shimmer-green {
+    background: linear-gradient(90deg,#34d399,#00f2fe,#34d399);
+    background-size:300% auto;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation: shimmer 6s linear infinite;
+  }
 
-  /* Pulsing badge dot */
+  /* Pulse dots */
   @keyframes pdot {
     0%,100% { box-shadow:0 0 0 0 rgba(87,250,233,0.6); }
     50%      { box-shadow:0 0 0 7px rgba(87,250,233,0); }
@@ -128,10 +128,15 @@
     0%,100% { box-shadow:0 0 0 0 rgba(192,132,252,0.6); }
     50%      { box-shadow:0 0 0 7px rgba(192,132,252,0); }
   }
+  @keyframes pdot-g {
+    0%,100% { box-shadow:0 0 0 0 rgba(52,211,153,0.6); }
+    50%      { box-shadow:0 0 0 7px rgba(52,211,153,0); }
+  }
   .pdot-c { animation: pdot   2s ease-in-out infinite; }
   .pdot-p { animation: pdot-p 2s ease-in-out infinite; }
+  .pdot-g { animation: pdot-g 2s ease-in-out infinite; }
 
-  /* Cards */
+  /* Cards reveal */
   .card-reveal {
     opacity:0;
     transform:translateY(28px);
@@ -142,7 +147,7 @@
   .d2 { transition-delay:0.22s; }
   .d3 { transition-delay:0.34s; }
 
-  /* Hover suave tarjetas */
+  /* Hover tarjetas */
   .ch { transition:transform 0.3s ease, box-shadow 0.3s ease; }
   .ch:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(0,0,0,0.4); }
 
@@ -151,10 +156,10 @@
   .ih:hover { transform:scale(1.04); filter:brightness(1.12); }
 
   /* Botones */
-  .bh { transition:transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease; }
+  .bh { transition:transform 0.2s ease, filter 0.2s ease; }
   .bh:hover { transform:scale(1.04) translateY(-2px); filter:brightness(1.12); }
 
-  /* Flecha bounce */
+  /* Bounce flecha */
   @keyframes bounce {
     0%,100% { transform:translateX(-50%) translateY(0); }
     50%      { transform:translateX(-50%) translateY(-8px); }
@@ -166,6 +171,7 @@
     width:10px; height:10px; border-radius:9999px;
     background:rgba(255,255,255,0.2);
     transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    cursor:pointer; border:none;
   }
   .dot-nav-item.active {
     background: #57fae9;
@@ -173,7 +179,7 @@
     box-shadow: 0 0 0 4px rgba(87,250,233,0.25);
   }
 
-  /* Hover corner accent en tarjetas MeYo */
+  /* Corner accent MeYo */
   .corner-accent {
     position:absolute; top:0; right:0; width:8rem; height:8rem;
     border-bottom-left-radius:9999px;
@@ -192,16 +198,17 @@
     <h1 class="text-xl font-bold tracking-tight text-white" style="font-family:Manrope">LAUNCHER</h1>
   </div>
   <div class="hidden md:flex gap-8 items-center">
-    <a class="text-secondary font-bold text-sm tracking-wide transition-opacity hover:opacity-80" href="#control">Control+</a>
+    <a class="text-secondary font-bold text-sm tracking-wide hover:opacity-80 transition-opacity" href="#control">Control+</a>
     <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#meyo">MeYo</a>
+    <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#future">Proyectos</a>
   </div>
 </header>
 
 <!-- ══ DOT NAV ══════════════════════════════════════════ -->
 <div class="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4" id="dot-nav">
-  <button class="dot-nav-item" onclick="scrollTo(0)" aria-label="Control+"></button>
-  <button class="dot-nav-item" onclick="scrollTo(1)" aria-label="MeYo"></button>
-  <button class="dot-nav-item" onclick="scrollTo(2)" aria-label="Futuros"></button>
+  <button class="dot-nav-item active" onclick="goTo(0)" aria-label="Control+"></button>
+  <button class="dot-nav-item"        onclick="goTo(1)" aria-label="MeYo"></button>
+  <button class="dot-nav-item"        onclick="goTo(2)" aria-label="Proyectos"></button>
 </div>
 
 <!-- ══ MAIN ═════════════════════════════════════════════ -->
@@ -212,7 +219,6 @@
   ══════════════════════════════════════════ -->
   <section class="snap-section flex items-center justify-center section-control" id="control">
 
-    <!-- Fondo animado -->
     <div class="absolute inset-0 z-0 overflow-hidden">
       <div class="blob-a absolute w-[800px] h-[800px] -top-96 -left-96 bg-blue-600/30 rounded-full blur-[120px]"></div>
       <div class="blob-b absolute w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-purple-600/20 rounded-full blur-[140px]"></div>
@@ -222,7 +228,7 @@
     <div class="container mx-auto px-6 relative z-10 pt-16">
       <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
 
-        <!-- Texto -->
+        <!-- Texto izquierda -->
         <div class="lg:w-1/2 text-center lg:text-left">
           <span class="fu1 px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-xs font-bold tracking-widest mb-6 inline-flex items-center gap-2 border border-secondary/30 backdrop-blur-md">
             <span class="w-2 h-2 rounded-full bg-secondary pdot-c"></span>
@@ -231,48 +237,43 @@
 
           <h2 class="fu2 text-6xl lg:text-8xl font-extrabold text-white tracking-tighter mb-6 leading-tight">
             Control<span class="text-secondary">+</span><br/>
-            <span class="shimmer-cyan">Precisión.</span>
+            <span class="shimmer-cyan">Inventario.</span>
           </h2>
 
           <p class="fu3 text-slate-200 max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed text-lg font-medium">
             Gestión de activos y hardware en tiempo real. Rastrea, visualiza y administra cada ítem con precisión desde cualquier lugar.
           </p>
 
-          <div class="fu4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div class="fu4">
             <a href="PEGA_TU_LINK_CONTROL_AQUI" target="_blank"
-               class="bh px-8 py-4 kinetic-gradient-teal text-white font-bold rounded-2xl shadow-2xl shadow-secondary/40">
+               class="bh inline-block px-8 py-4 kinetic-gradient-teal text-white font-bold rounded-2xl shadow-2xl shadow-secondary/40">
               Abrir Control+
             </a>
-
           </div>
         </div>
 
-        <!-- Cards - Reemplazadas con el nuevo diseño -->
+        <!-- Cards derecha -->
         <div class="lg:w-1/2 grid grid-cols-2 gap-6">
-          
-          <!-- Tarjeta 1: Control Predictivo -->
-          <div class="card-reveal d1 ch p-8 glass-card rounded-[3rem] relative overflow-hidden group">
-            <div class="corner-accent bg-blue-500/20"></div>
-            <span class="material-symbols-outlined text-blue-300 mb-6 text-4xl">trending_up</span>
-            <h3 class="text-2xl font-bold mb-3 text-white">Control Predictivo</h3>
-            <p class="text-slate-200 text-sm leading-relaxed">Anticipación de necesidades y análisis de tendencias en tiempo real.</p>
+
+          <div class="card-reveal d1 ch glass-card p-8 rounded-[3rem] relative overflow-hidden group">
+            <div class="corner-accent bg-secondary/10"></div>
+            <span class="material-symbols-outlined text-secondary mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">inventory_2</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Control Total</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Rastreo de activos y hardware en tiempo real con registros automáticos.</p>
           </div>
 
-          <!-- Tarjeta 2: Trazabilidad Total -->
-          <div class="card-reveal d2 ch p-8 glass-card rounded-[3rem] mt-12 relative overflow-hidden group">
-            <div class="corner-accent bg-cyan-500/20"></div>
-            <span class="material-symbols-outlined text-cyan-300 mb-6 text-4xl">track_changes</span>
-            <h3 class="text-2xl font-bold mb-3 text-white">Trazabilidad Total</h3>
-            <p class="text-slate-200 text-sm leading-relaxed">Seguimiento completo del ciclo de vida de cada activo.</p>
+          <div class="card-reveal d2 ch glass-card p-8 rounded-[3rem] mt-12 relative overflow-hidden group">
+            <div class="corner-accent bg-blue-500/10"></div>
+            <span class="material-symbols-outlined text-blue-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">sensors</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Monitoreo</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Visualización en vivo del estado de cada ítem y su conectividad.</p>
           </div>
 
         </div>
       </div>
     </div>
 
-    <!-- Flecha siguiente sección -->
-    <a href="#meyo"
-       class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
+    <a href="#meyo" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
       <span class="text-[9px] text-slate-300 tracking-widest uppercase">MeYo</span>
       <span class="material-symbols-outlined text-slate-300">expand_more</span>
     </a>
@@ -283,7 +284,6 @@
   ══════════════════════════════════════════ -->
   <section class="snap-section flex items-center justify-center section-meyo" id="meyo">
 
-    <!-- Fondo animado -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="blob-a absolute w-[60%] h-[60%] top-1/4 right-[-10%] bg-purple-600/40 rounded-full blur-[140px] opacity-60"></div>
       <div class="blob-b absolute w-[50%] h-[50%] bottom-1/4 left-[-10%] bg-pink-600/30 rounded-full blur-[140px] opacity-60"></div>
@@ -330,31 +330,29 @@
             Un canvas minimalista para tu existencia digital. Organiza ideas y tareas con un estilo propio.
           </p>
 
-          <a href="PEGA_TU_LINK_MEYO_AQUI" target="_blank"
-             class="fu4 bh inline-block px-10 py-5 kinetic-gradient-purple text-white font-bold rounded-2xl shadow-2xl shadow-purple-900/60">
-            Abrir MeYo
-          </a>
+          <div class="fu4">
+            <a href="PEGA_TU_LINK_MEYO_AQUI" target="_blank"
+               class="bh inline-block px-10 py-5 kinetic-gradient-purple text-white font-bold rounded-2xl shadow-2xl shadow-purple-900/60">
+              Abrir MeYo
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- Flecha volver arriba -->
-    <a href="#control"
-       class="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity"
-       style="transform:translateX(-50%)">
-      <span class="material-symbols-outlined text-slate-300 rotate-180">expand_more</span>
-      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Control+</span>
+    <a href="#future" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Proyectos</span>
+      <span class="material-symbols-outlined text-slate-300">expand_more</span>
     </a>
   </section>
 
   <!-- ══════════════════════════════════════════
        SECCIÓN 3 — FUTUROS PROYECTOS
   ══════════════════════════════════════════ -->
-  <section class="snap-section relative overflow-hidden flex items-center justify-center" id="future"
-    style="background: radial-gradient(circle at bottom right,#004d40,#002e2c,#001a1a);">
+  <section class="snap-section flex items-center justify-center section-future" id="future">
 
-    <div class="absolute inset-0">
+    <div class="absolute inset-0 overflow-hidden">
       <div class="blob-a absolute w-[70%] h-[70%] -top-1/4 right-0 bg-emerald-500/30 rounded-full blur-[140px] opacity-60"></div>
       <div class="blob-b absolute w-[60%] h-[60%] -bottom-1/4 -left-1/4 bg-blue-800/40 rounded-full blur-[140px] opacity-60"></div>
     </div>
@@ -368,14 +366,15 @@
 
         <h2 class="fu2 text-7xl lg:text-9xl font-extrabold text-white tracking-tighter mb-8 leading-none">
           Proyectos<br/>
-          <span class="shimmer-cyan">Futuros.</span>
+          <span class="shimmer-green">Futuros.</span>
         </h2>
 
         <div class="grid md:grid-cols-3 gap-8 mt-12">
 
           <div class="card-reveal d1 group cursor-pointer">
-            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card">
-              <img alt="Visual creativo abstracto" class="ih w-full h-full object-cover opacity-80"
+            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card ch">
+              <img alt="Visual creativo abstracto"
+                class="ih w-full h-full object-cover opacity-80"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQFMUPZ7aH9L1iVFhXq-_APhrr5D0qAkn1Uk3WTfjbH0_U0NmDapCFnqXwPBkerwe9kNyOEgHaG6xc6zgDUdAaEIQ2Zw71Fg1JJ4aYwG9-Wsjl15DGeNdadIWnPSbTjNDICQKxGM3eghEpHuns0pImspKgCsz-oMNBwfxwnpYng60dm9Lok6w6Q_cUebtyrFrJHlSkmUp3sFy2hTE1FQ3CRafd9P-Yqx7pHbw6FDdeJv0STQt7bDjnlQY09Qs2HNW47meO78G_dwFK"/>
               <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
                 <span class="text-white text-xl font-black tracking-tight">Proyecto Alpha</span>
@@ -384,8 +383,9 @@
           </div>
 
           <div class="card-reveal d2 group cursor-pointer mt-8">
-            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card">
-              <img alt="Visualización tech neón" class="ih w-full h-full object-cover opacity-80"
+            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card ch">
+              <img alt="Visualización tech neón"
+                class="ih w-full h-full object-cover opacity-80"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuUW41t2iXy2LiFgmlY1M2c_oaeCRVNcJjOjPN0NB-fEzNgGemY23qMz7_hio6WV9HpTeBqHnE7VT65J2044H_wihZ4eLZ3vzlaCr169UjjAVL3n7sr1MKD40ptHB-rPgxmZ6VpNt-Zr1AtPVGeiFkk-XZD7W1AuJc64IAhbx3QsS6X0UgNYdRiMUGTmSGMjJqowmyIgS6LqWil2jI8sv0vy2ujc_jXMWPiA4x7zQyfGK1i6Xwl-7RsCzOKXliY_Z2ZSLDv7y_WgBM"/>
               <div class="absolute inset-0 bg-gradient-to-t from-cyan-950/90 via-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
                 <span class="text-white text-xl font-black tracking-tight">Proyecto Beta</span>
@@ -398,10 +398,11 @@
               <p class="text-emerald-300 font-black text-lg mb-2 uppercase tracking-widest">Incubando ideas</p>
               <p class="text-slate-100 font-medium">Explorando nuevos conceptos en energía cinética urbana y estética líquida.</p>
             </div>
-            <button class="w-20 h-20 rounded-full kinetic-gradient-sunset text-white flex items-center justify-center shadow-2xl shadow-emerald-500/30 self-start group transition-all hover:w-56 overflow-hidden bh"
+            <button
+              class="bh w-20 h-20 rounded-full text-white flex items-center justify-center shadow-2xl self-start group/btn transition-all hover:w-56 overflow-hidden"
               style="background:linear-gradient(135deg,#ff4b2b,#ff416c)">
-              <span class="material-symbols-outlined text-3xl transition-transform group-hover:-rotate-45">arrow_forward</span>
-              <span class="hidden group-hover:block ml-4 font-black text-lg whitespace-nowrap">EXPLORAR</span>
+              <span class="material-symbols-outlined text-3xl transition-transform group-hover/btn:-rotate-45">arrow_forward</span>
+              <span class="hidden group-hover/btn:block ml-4 font-black text-lg whitespace-nowrap">EXPLORAR</span>
             </button>
           </div>
 
@@ -414,6 +415,7 @@
       <span class="text-[9px] text-slate-300 tracking-widest uppercase">Inicio</span>
     </a>
   </section>
+
 </main>
 
 <!-- ══ BOTTOM NAV (móvil) ════════════════════════════════ -->
@@ -423,6 +425,9 @@
   </a>
   <a class="flex items-center justify-center text-slate-200 p-3 hover:text-white" href="#meyo">
     <span class="material-symbols-outlined">psychology</span>
+  </a>
+  <a class="flex items-center justify-center text-slate-200 p-3 hover:text-white" href="#future">
+    <span class="material-symbols-outlined">rocket_launch</span>
   </a>
 </nav>
 
@@ -435,57 +440,46 @@
 
 <!-- ══ SCRIPTS ════════════════════════════════════════════ -->
 <script>
-  const scroller = document.getElementById('scroller');
-  const dotItems = document.querySelectorAll('.dot-nav-item');
-  const sections = [
+  const scroller  = document.getElementById('scroller');
+  const dotItems  = document.querySelectorAll('.dot-nav-item');
+  const sections  = [
     document.getElementById('control'),
     document.getElementById('meyo'),
     document.getElementById('future')
   ];
 
-  /* Ir a sección desde dot */
-  function scrollTo(i) {
-    if (sections[i]) {
-      sections[i].scrollIntoView({ behavior: 'smooth' });
-    }
+  function goTo(i) {
+    sections[i].scrollIntoView({ behavior:'smooth' });
   }
 
-  /* Actualizar dot activo */
   function updateDots() {
-    const pos = scroller.scrollTop;
-    const h   = scroller.clientHeight;
-    const idx = Math.round(pos / h);
-    dotItems.forEach((d, i) => {
-      d.classList.toggle('active', i === idx);
-    });
+    const idx = Math.round(scroller.scrollTop / scroller.clientHeight);
+    dotItems.forEach((d, i) => d.classList.toggle('active', i === idx));
   }
-  scroller.addEventListener('scroll', updateDots, { passive: true });
+  scroller.addEventListener('scroll', updateDots, { passive:true });
 
-  /* Reveal de tarjetas al entrar sección */
+  /* Reveal cards */
   const revealEls = document.querySelectorAll('.card-reveal');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.15 });
+  }, { threshold:0.15 });
   revealEls.forEach(el => obs.observe(el));
 
-  /* Re-animar textos de hero al cambiar sección */
+  /* Re-animar texto hero al cambiar sección */
   let lastIdx = -1;
   scroller.addEventListener('scroll', () => {
     const idx = Math.round(scroller.scrollTop / scroller.clientHeight);
-    if (idx !== lastIdx && sections[idx]) {
+    if (idx !== lastIdx) {
       lastIdx = idx;
-      const sec = sections[idx];
-      if (sec) {
-        sec.querySelectorAll('.fu1,.fu2,.fu3,.fu4').forEach(el => {
-          el.style.animation = 'none';
-          void el.offsetHeight;
-          el.style.animation = '';
-        });
-      }
+      sections[idx].querySelectorAll('.fu1,.fu2,.fu3,.fu4').forEach(el => {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
     }
-  }, { passive: true });
+  }, { passive:true });
 </script>
 
 </body>
