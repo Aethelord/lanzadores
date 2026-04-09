@@ -67,6 +67,7 @@
   .kinetic-gradient-blue   { background: linear-gradient(135deg,#0050d4,#00d2ff); }
   .kinetic-gradient-teal   { background: linear-gradient(135deg,#00675f,#00f2fe); }
   .kinetic-gradient-purple { background: linear-gradient(135deg,#6200ee,#ff00c1); }
+  .kinetic-gradient-sunset { background: linear-gradient(135deg,#ff4b2b,#ff416c); }
 
   body { font-family:'Inter',sans-serif; background:#120b1e; color:#fff; }
   h1,h2,h3 { font-family:'Manrope',sans-serif; }
@@ -198,8 +199,9 @@
 
 <!-- ══ DOT NAV ══════════════════════════════════════════ -->
 <div class="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4" id="dot-nav">
-  <button class="dot-nav-item active" onclick="scrollTo(0)" aria-label="Control+"></button>
-  <button class="dot-nav-item"        onclick="scrollTo(1)" aria-label="MeYo"></button>
+  <button class="dot-nav-item" onclick="scrollTo(0)" aria-label="Control+"></button>
+  <button class="dot-nav-item" onclick="scrollTo(1)" aria-label="MeYo"></button>
+  <button class="dot-nav-item" onclick="scrollTo(2)" aria-label="Futuros"></button>
 </div>
 
 <!-- ══ MAIN ═════════════════════════════════════════════ -->
@@ -241,20 +243,14 @@
                class="bh px-8 py-4 kinetic-gradient-teal text-white font-bold rounded-2xl shadow-2xl shadow-secondary/40">
               Abrir Control+
             </a>
-            <a href="PEGA_TU_LINK_CONTROL_AQUI" target="_blank"
-               class="bh px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/20 transition-colors backdrop-blur-md">
-              Ver registros
-            </a>
+
           </div>
         </div>
 
         <!-- Cards -->
         <div class="lg:w-1/2 grid grid-cols-2 gap-4">
 
-          <div class="card-reveal d1 ch glass-card p-6 rounded-[2.5rem] flex flex-col gap-4 translate-y-8 backdrop-blur-[40px] bg-white/10">
-            <div class="w-14 h-14 rounded-2xl bg-secondary/30 flex items-center justify-center border border-secondary/40">
-              <span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings:'FILL' 1;">inventory_2</span>
-            </div>
+          <div class="card-reveal d1 ch glass-card p-6 rounded-[2.5rem] flex flex-col gap-4 backdrop-blur-[40px] bg-white/10">
             <div>
               <p class="text-4xl font-black text-white">1,284</p>
               <p class="text-sm text-slate-200 font-bold uppercase tracking-wider">Ítems activos</p>
@@ -271,13 +267,6 @@
             </div>
           </div>
 
-          <div class="card-reveal d3 col-span-2 ch glass-card p-1.5 rounded-[2.5rem] overflow-hidden mt-4 backdrop-blur-[40px] bg-white/10">
-            <img
-              alt="Sala de servidores"
-              class="ih w-full h-48 object-cover rounded-[2.3rem] opacity-90 brightness-110"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6wNaoomm_RZMpcJ0l2wOyP27J6XaL1-Jm-1X_BLpKJBQ_7aamP6tpdaAzuumdgxgHV1KxAcuGeZUYno1aXMipIaQ7ebbXm2CuchNkTsoViH4pHPcEZvYWb0PxBivKfbHIUoC_cCpxdNFoP2UvL0naCi4ZAN3ybDVk3iiAnRSq4drxNplvvbs6Vrj_rrXmnisKUSaMQmox17Zu_1npVe7Zq2AZxG_8xXZTaeh7"
-            />
-          </div>
 
         </div>
       </div>
@@ -361,6 +350,72 @@
     </a>
   </section>
 
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 3 — FUTUROS PROYECTOS
+  ══════════════════════════════════════════ -->
+  <section class="snap-section relative overflow-hidden flex items-center justify-center" id="future"
+    style="background: radial-gradient(circle at bottom right,#004d40,#002e2c,#001a1a);">
+
+    <div class="absolute inset-0">
+      <div class="blob-a absolute w-[70%] h-[70%] -top-1/4 right-0 bg-emerald-500/30 rounded-full blur-[140px] opacity-60"></div>
+      <div class="blob-b absolute w-[60%] h-[60%] -bottom-1/4 -left-1/4 bg-blue-800/40 rounded-full blur-[140px] opacity-60"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 pt-16">
+      <div class="max-w-6xl mx-auto">
+
+        <span class="fu1 px-4 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold tracking-widest mb-6 inline-block border border-emerald-400/30 backdrop-blur-sm">
+          LABORATORIO CREATIVO
+        </span>
+
+        <h2 class="fu2 text-7xl lg:text-9xl font-extrabold text-white tracking-tighter mb-8 leading-none">
+          Proyectos<br/>
+          <span class="shimmer-cyan">Futuros.</span>
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+
+          <div class="card-reveal d1 group cursor-pointer">
+            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card">
+              <img alt="Visual creativo abstracto" class="ih w-full h-full object-cover opacity-80"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQFMUPZ7aH9L1iVFhXq-_APhrr5D0qAkn1Uk3WTfjbH0_U0NmDapCFnqXwPBkerwe9kNyOEgHaG6xc6zgDUdAaEIQ2Zw71Fg1JJ4aYwG9-Wsjl15DGeNdadIWnPSbTjNDICQKxGM3eghEpHuns0pImspKgCsz-oMNBwfxwnpYng60dm9Lok6w6Q_cUebtyrFrJHlSkmUp3sFy2hTE1FQ3CRafd9P-Yqx7pHbw6FDdeJv0STQt7bDjnlQY09Qs2HNW47meO78G_dwFK"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                <span class="text-white text-xl font-black tracking-tight">Proyecto Alpha</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-reveal d2 group cursor-pointer mt-8">
+            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card">
+              <img alt="Visualización tech neón" class="ih w-full h-full object-cover opacity-80"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuUW41t2iXy2LiFgmlY1M2c_oaeCRVNcJjOjPN0NB-fEzNgGemY23qMz7_hio6WV9HpTeBqHnE7VT65J2044H_wihZ4eLZ3vzlaCr169UjjAVL3n7sr1MKD40ptHB-rPgxmZ6VpNt-Zr1AtPVGeiFkk-XZD7W1AuJc64IAhbx3QsS6X0UgNYdRiMUGTmSGMjJqowmyIgS6LqWil2jI8sv0vy2ujc_jXMWPiA4x7zQyfGK1i6Xwl-7RsCzOKXliY_Z2ZSLDv7y_WgBM"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-cyan-950/90 via-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                <span class="text-white text-xl font-black tracking-tight">Proyecto Beta</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-reveal d3 flex flex-col justify-center gap-6">
+            <div class="p-8 glass-card rounded-[2.5rem] border border-emerald-400/20">
+              <p class="text-emerald-300 font-black text-lg mb-2 uppercase tracking-widest">Incubando ideas</p>
+              <p class="text-slate-100 font-medium">Explorando nuevos conceptos en energía cinética urbana y estética líquida.</p>
+            </div>
+            <button class="w-20 h-20 rounded-full kinetic-gradient-sunset text-white flex items-center justify-center shadow-2xl shadow-emerald-500/30 self-start group transition-all hover:w-56 overflow-hidden bh"
+              style="background:linear-gradient(135deg,#ff4b2b,#ff416c)">
+              <span class="material-symbols-outlined text-3xl transition-transform group-hover:-rotate-45">arrow_forward</span>
+              <span class="hidden group-hover:block ml-4 font-black text-lg whitespace-nowrap">EXPLORAR</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <a href="#control" class="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity" style="transform:translateX(-50%)">
+      <span class="material-symbols-outlined text-slate-300 rotate-180">expand_more</span>
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Inicio</span>
+    </a>
+  </section>
 </main>
 
 <!-- ══ BOTTOM NAV (móvil) ════════════════════════════════ -->
@@ -386,12 +441,15 @@
   const dotItems = document.querySelectorAll('.dot-nav-item');
   const sections = [
     document.getElementById('control'),
-    document.getElementById('meyo')
+    document.getElementById('meyo'),
+    document.getElementById('future')
   ];
 
   /* Ir a sección desde dot */
   function scrollTo(i) {
-    sections[i].scrollIntoView({ behavior: 'smooth' });
+    if (sections[i]) {
+      sections[i].scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   /* Actualizar dot activo */
@@ -418,14 +476,16 @@
   let lastIdx = -1;
   scroller.addEventListener('scroll', () => {
     const idx = Math.round(scroller.scrollTop / scroller.clientHeight);
-    if (idx !== lastIdx) {
+    if (idx !== lastIdx && sections[idx]) {
       lastIdx = idx;
       const sec = sections[idx];
-      sec.querySelectorAll('.fu1,.fu2,.fu3,.fu4').forEach(el => {
-        el.style.animation = 'none';
-        void el.offsetHeight;
-        el.style.animation = '';
-      });
+      if (sec) {
+        sec.querySelectorAll('.fu1,.fu2,.fu3,.fu4').forEach(el => {
+          el.style.animation = 'none';
+          void el.offsetHeight;
+          el.style.animation = '';
+        });
+      }
     }
   }, { passive: true });
 </script>
