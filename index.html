@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LAUNCHER — Control+ & MeYo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface": "#120b1e",
+          "surface-container": "#1e1330",
+          "on-primary": "#f1f2ff",
+          "tertiary": "#ff937a",
+          "secondary": "#57fae9",
+          "on-tertiary": "#360500",
+          "secondary-container": "#00675f",
+          "primary-fixed-dim": "#658eff",
+          "primary-container": "#00328c",
+          "primary": "#658eff",
+          "on-primary-container": "#d6e2ff",
+          "on-secondary": "#003733",
+          "background": "#120b1e",
+          "on-background": "#f5f6f7",
+        },
+        fontFamily: {
+          headline: ["Manrope"], body: ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  /* ── Scroll por pantallas completas ── */
+  .snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    scrollbar-width: none;
+  }
+  .snap-container::-webkit-scrollbar { display: none; }
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .glass-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .kinetic-gradient-blue   { background: linear-gradient(135deg,#0050d4,#00d2ff); }
+  .kinetic-gradient-teal   { background: linear-gradient(135deg,#00675f,#00f2fe); }
+  .kinetic-gradient-purple { background: linear-gradient(135deg,#6200ee,#ff00c1); }
+
+  body { font-family:'Inter',sans-serif; background:#120b1e; color:#fff; }
+  h1,h2,h3 { font-family:'Manrope',sans-serif; }
+
+  .section-control { background:#0a0614; }
+  .section-meyo { background: radial-gradient(circle at center,#2d004d,#1a0033,#0d001a); }
+
+  /* ════════════════════════════
+     ANIMACIONES
+  ════════════════════════════ */
+
+  /* Blobs flotantes */
+  @keyframes blob {
+    0%,100% { transform:translate(0,0) scale(1); }
+    33%      { transform:translate(30px,-50px) scale(1.1); }
+    66%      { transform:translate(-20px,20px) scale(0.9); }
+  }
+  .blob-a { animation: blob 22s ease-in-out infinite; }
+  .blob-b { animation: blob 28s ease-in-out infinite reverse; }
+  .blob-c { animation: blob 18s ease-in-out infinite 4s; }
+
+  /* Entrada hero */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(36px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .fu1 { opacity:0; animation: fadeUp 0.7s 0.05s ease forwards; }
+  .fu2 { opacity:0; animation: fadeUp 0.7s 0.2s  ease forwards; }
+  .fu3 { opacity:0; animation: fadeUp 0.7s 0.35s ease forwards; }
+  .fu4 { opacity:0; animation: fadeUp 0.7s 0.5s  ease forwards; }
+
+  /* Shimmer texto */
+  @keyframes shimmer {
+    0%   { background-position:-200% center; }
+    100% { background-position: 200% center; }
+  }
+  .shimmer-cyan {
+    background: linear-gradient(90deg,#57fae9,#00d2ff,#658eff,#57fae9);
+    background-size:300% auto;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation: shimmer 6s linear infinite;
+  }
+  .shimmer-purple {
+    background: linear-gradient(90deg,#c084fc,#ff00c1,#658eff,#c084fc);
+    background-size:300% auto;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation: shimmer 6s linear infinite;
+  }
+
+  /* Pulsing badge dot */
+  @keyframes pdot {
+    0%,100% { box-shadow:0 0 0 0 rgba(87,250,233,0.6); }
+    50%      { box-shadow:0 0 0 7px rgba(87,250,233,0); }
+  }
+  @keyframes pdot-p {
+    0%,100% { box-shadow:0 0 0 0 rgba(192,132,252,0.6); }
+    50%      { box-shadow:0 0 0 7px rgba(192,132,252,0); }
+  }
+  .pdot-c { animation: pdot   2s ease-in-out infinite; }
+  .pdot-p { animation: pdot-p 2s ease-in-out infinite; }
+
+  /* Cards */
+  .card-reveal {
+    opacity:0;
+    transform:translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .card-reveal.on { opacity:1; transform:translateY(0); }
+  .d1 { transition-delay:0.1s; }
+  .d2 { transition-delay:0.22s; }
+  .d3 { transition-delay:0.34s; }
+
+  /* Hover suave tarjetas */
+  .ch { transition:transform 0.3s ease, box-shadow 0.3s ease; }
+  .ch:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(0,0,0,0.4); }
+
+  /* Imagen hover */
+  .ih { transition:transform 0.5s ease, filter 0.3s ease; }
+  .ih:hover { transform:scale(1.04); filter:brightness(1.12); }
+
+  /* Botones */
+  .bh { transition:transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease; }
+  .bh:hover { transform:scale(1.04) translateY(-2px); filter:brightness(1.12); }
+
+  /* Flecha bounce */
+  @keyframes bounce {
+    0%,100% { transform:translateX(-50%) translateY(0); }
+    50%      { transform:translateX(-50%) translateY(-8px); }
+  }
+  .arrow-bounce { animation: bounce 2.2s ease-in-out infinite; }
+
+  /* Dot nav */
+  .dot-nav-item {
+    width:10px; height:10px; border-radius:9999px;
+    background:rgba(255,255,255,0.2);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .dot-nav-item.active {
+    background: #57fae9;
+    transform: scale(1.3);
+    box-shadow: 0 0 0 4px rgba(87,250,233,0.25);
+  }
+
+  /* Hover corner accent en tarjetas MeYo */
+  .corner-accent {
+    position:absolute; top:0; right:0; width:8rem; height:8rem;
+    border-bottom-left-radius:9999px;
+    transition: transform 0.4s ease;
+  }
+  .group:hover .corner-accent { transform:scale(1.3); }
+</style>
+</head>
+
+<body class="overflow-hidden selection:bg-blue-900 selection:text-white">
+
+<!-- ══ HEADER ══════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-2xl flex justify-between items-center px-6 py-4 border-b border-white/10">
+  <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">rocket_launch</span>
+    <h1 class="text-xl font-bold tracking-tight text-white" style="font-family:Manrope">LAUNCHER</h1>
+  </div>
+  <div class="hidden md:flex gap-8 items-center">
+    <a class="text-secondary font-bold text-sm tracking-wide transition-opacity hover:opacity-80" href="#control">Control+</a>
+    <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#meyo">MeYo</a>
+  </div>
+</header>
+
+<!-- ══ DOT NAV ══════════════════════════════════════════ -->
+<div class="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4" id="dot-nav">
+  <button class="dot-nav-item active" onclick="scrollTo(0)" aria-label="Control+"></button>
+  <button class="dot-nav-item"        onclick="scrollTo(1)" aria-label="MeYo"></button>
+</div>
+
+<!-- ══ MAIN ═════════════════════════════════════════════ -->
+<main class="snap-container" id="scroller">
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 1 — CONTROL+
+  ══════════════════════════════════════════ -->
+  <section class="snap-section flex items-center justify-center section-control" id="control">
+
+    <!-- Fondo animado -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="blob-a absolute w-[800px] h-[800px] -top-96 -left-96 bg-blue-600/30 rounded-full blur-[120px]"></div>
+      <div class="blob-b absolute w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-purple-600/20 rounded-full blur-[140px]"></div>
+      <div class="blob-c absolute w-[700px] h-[700px] -bottom-64 -right-64 bg-cyan-500/20 rounded-full blur-[130px]"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 pt-16">
+      <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
+
+        <!-- Texto -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <span class="fu1 px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-xs font-bold tracking-widest mb-6 inline-flex items-center gap-2 border border-secondary/30 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-secondary pdot-c"></span>
+            SISTEMA DE INVENTARIOS
+          </span>
+
+          <h2 class="fu2 text-6xl lg:text-8xl font-extrabold text-white tracking-tighter mb-6 leading-tight">
+            Control<span class="text-secondary">+</span><br/>
+            <span class="shimmer-cyan">Precisión.</span>
+          </h2>
+
+          <p class="fu3 text-slate-200 max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed text-lg font-medium">
+            Gestión de activos y hardware en tiempo real. Rastrea, visualiza y administra cada ítem con precisión desde cualquier lugar.
+          </p>
+
+          <div class="fu4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="PEGA_TU_LINK_CONTROL_AQUI" target="_blank"
+               class="bh px-8 py-4 kinetic-gradient-teal text-white font-bold rounded-2xl shadow-2xl shadow-secondary/40">
+              Abrir Control+
+            </a>
+            <a href="PEGA_TU_LINK_CONTROL_AQUI" target="_blank"
+               class="bh px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/20 transition-colors backdrop-blur-md">
+              Ver registros
+            </a>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+
+          <div class="card-reveal d1 ch glass-card p-6 rounded-[2.5rem] flex flex-col gap-4 translate-y-8 backdrop-blur-[40px] bg-white/10">
+            <div class="w-14 h-14 rounded-2xl bg-secondary/30 flex items-center justify-center border border-secondary/40">
+              <span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings:'FILL' 1;">inventory_2</span>
+            </div>
+            <div>
+              <p class="text-4xl font-black text-white">1,284</p>
+              <p class="text-sm text-slate-200 font-bold uppercase tracking-wider">Ítems activos</p>
+            </div>
+          </div>
+
+          <div class="card-reveal d2 ch glass-card p-6 rounded-[2.5rem] flex flex-col gap-4 backdrop-blur-[40px] bg-white/10">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/30 flex items-center justify-center border border-blue-400/40">
+              <span class="material-symbols-outlined text-blue-300 text-3xl" style="font-variation-settings:'FILL' 1;">sensors</span>
+            </div>
+            <div>
+              <p class="text-4xl font-black text-white">98.2%</p>
+              <p class="text-sm text-slate-200 font-bold uppercase tracking-wider">Conectividad</p>
+            </div>
+          </div>
+
+          <div class="card-reveal d3 col-span-2 ch glass-card p-1.5 rounded-[2.5rem] overflow-hidden mt-4 backdrop-blur-[40px] bg-white/10">
+            <img
+              alt="Sala de servidores"
+              class="ih w-full h-48 object-cover rounded-[2.3rem] opacity-90 brightness-110"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6wNaoomm_RZMpcJ0l2wOyP27J6XaL1-Jm-1X_BLpKJBQ_7aamP6tpdaAzuumdgxgHV1KxAcuGeZUYno1aXMipIaQ7ebbXm2CuchNkTsoViH4pHPcEZvYWb0PxBivKfbHIUoC_cCpxdNFoP2UvL0naCi4ZAN3ybDVk3iiAnRSq4drxNplvvbs6Vrj_rrXmnisKUSaMQmox17Zu_1npVe7Zq2AZxG_8xXZTaeh7"
+            />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Flecha siguiente sección -->
+    <a href="#meyo"
+       class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">MeYo</span>
+      <span class="material-symbols-outlined text-slate-300">expand_more</span>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 2 — MEYO
+  ══════════════════════════════════════════ -->
+  <section class="snap-section flex items-center justify-center section-meyo" id="meyo">
+
+    <!-- Fondo animado -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="blob-a absolute w-[60%] h-[60%] top-1/4 right-[-10%] bg-purple-600/40 rounded-full blur-[140px] opacity-60"></div>
+      <div class="blob-b absolute w-[50%] h-[50%] bottom-1/4 left-[-10%] bg-pink-600/30 rounded-full blur-[140px] opacity-60"></div>
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_2px,transparent_2px)] [background-size:32px_32px]"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 pt-16">
+      <div class="flex flex-col-reverse lg:flex-row gap-16 items-center max-w-6xl mx-auto">
+
+        <!-- Cards izquierda -->
+        <div class="lg:w-1/2">
+          <div class="grid grid-cols-2 gap-6">
+
+            <div class="card-reveal d1 ch p-8 glass-card rounded-[3rem] relative overflow-hidden group">
+              <div class="corner-accent bg-purple-500/20"></div>
+              <span class="material-symbols-outlined text-purple-300 mb-6 text-4xl">edit_note</span>
+              <h3 class="text-2xl font-bold mb-3 text-white">Segundo Cerebro</h3>
+              <p class="text-slate-200 text-sm leading-relaxed">Nodos conectados de arquitectura del conocimiento.</p>
+            </div>
+
+            <div class="card-reveal d2 ch p-8 glass-card rounded-[3rem] mt-12 relative overflow-hidden group">
+              <div class="corner-accent bg-pink-500/20"></div>
+              <span class="material-symbols-outlined text-pink-300 mb-6 text-4xl">calendar_today</span>
+              <h3 class="text-2xl font-bold mb-3 text-white">Flujo Diario</h3>
+              <p class="text-slate-200 text-sm leading-relaxed">Priorización automatizada de tareas de alta frecuencia.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Texto derecha -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <span class="fu1 px-4 py-1.5 rounded-full bg-purple-500/30 text-purple-200 text-xs font-bold tracking-widest mb-6 inline-flex items-center gap-2 border border-purple-400/40 backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-purple-400 pdot-p"></span>
+            PRODUCTIVIDAD PERSONAL
+          </span>
+
+          <h2 class="fu2 text-6xl lg:text-8xl font-extrabold text-white tracking-tighter mb-6 leading-tight">
+            MeYo<br/>
+            <span class="shimmer-purple">Pensamiento.</span>
+          </h2>
+
+          <p class="fu3 text-slate-200 max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed text-lg font-medium">
+            Un canvas minimalista para tu existencia digital. Organiza ideas y tareas con un estilo propio.
+          </p>
+
+          <a href="PEGA_TU_LINK_MEYO_AQUI" target="_blank"
+             class="fu4 bh inline-block px-10 py-5 kinetic-gradient-purple text-white font-bold rounded-2xl shadow-2xl shadow-purple-900/60">
+            Abrir MeYo
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Flecha volver arriba -->
+    <a href="#control"
+       class="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity"
+       style="transform:translateX(-50%)">
+      <span class="material-symbols-outlined text-slate-300 rotate-180">expand_more</span>
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Control+</span>
+    </a>
+  </section>
+
+</main>
+
+<!-- ══ BOTTOM NAV (móvil) ════════════════════════════════ -->
+<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex justify-around items-center px-4 py-4 bg-white/10 backdrop-blur-3xl rounded-[2.5rem] z-50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/20">
+  <a class="flex items-center justify-center bg-secondary text-black rounded-full p-3 shadow-lg" href="#control">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">inventory_2</span>
+  </a>
+  <a class="flex items-center justify-center text-slate-200 p-3 hover:text-white" href="#meyo">
+    <span class="material-symbols-outlined">psychology</span>
+  </a>
+</nav>
+
+<!-- ══ FAB ═══════════════════════════════════════════════ -->
+<button
+  class="fixed bottom-10 right-10 z-[70] w-16 h-16 kinetic-gradient-blue text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 duration-200 group border border-white/30"
+  onclick="document.getElementById('scroller').scrollTo({top:0,behavior:'smooth'})">
+  <span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+
+<!-- ══ SCRIPTS ════════════════════════════════════════════ -->
+<script>
+  const scroller = document.getElementById('scroller');
+  const dotItems = document.querySelectorAll('.dot-nav-item');
+  const sections = [
+    document.getElementById('control'),
+    document.getElementById('meyo')
+  ];
+
+  /* Ir a sección desde dot */
+  function scrollTo(i) {
+    sections[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* Actualizar dot activo */
+  function updateDots() {
+    const pos = scroller.scrollTop;
+    const h   = scroller.clientHeight;
+    const idx = Math.round(pos / h);
+    dotItems.forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+  scroller.addEventListener('scroll', updateDots, { passive: true });
+
+  /* Reveal de tarjetas al entrar sección */
+  const revealEls = document.querySelectorAll('.card-reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => obs.observe(el));
+
+  /* Re-animar textos de hero al cambiar sección */
+  let lastIdx = -1;
+  scroller.addEventListener('scroll', () => {
+    const idx = Math.round(scroller.scrollTop / scroller.clientHeight);
+    if (idx !== lastIdx) {
+      lastIdx = idx;
+      const sec = sections[idx];
+      sec.querySelectorAll('.fu1,.fu2,.fu3,.fu4').forEach(el => {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>
