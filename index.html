@@ -67,13 +67,19 @@
   .kinetic-gradient-blue   { background: linear-gradient(135deg,#0050d4,#00d2ff); }
   .kinetic-gradient-teal   { background: linear-gradient(135deg,#00675f,#00f2fe); }
   .kinetic-gradient-purple { background: linear-gradient(135deg,#6200ee,#ff00c1); }
+  .kinetic-gradient-amber  { background: linear-gradient(135deg,#b45309,#ffd54a); }
+  .kinetic-gradient-indigo { background: linear-gradient(135deg,#3730a3,#818cf8); }
+  .kinetic-gradient-rose   { background: linear-gradient(135deg,#9f1239,#fb7185); }
 
   body { font-family:'Inter',sans-serif; background:#120b1e; color:#fff; }
   h1,h2,h3 { font-family:'Manrope',sans-serif; }
 
-  .section-control { background:#0a0614; }
-  .section-meyo    { background: radial-gradient(circle at center,#2d004d,#1a0033,#0d001a); }
-  .section-future  { background: radial-gradient(circle at bottom right,#004d40,#002e2c,#001a1a); }
+  .section-matrix     { background: radial-gradient(circle at center,#2b1900,#1a0f00,#0d0700); }
+  .section-matricula  { background: radial-gradient(circle at center,#0f0d2e,#0a0820,#050410); }
+  .section-control    { background:#0a0614; }
+  .section-clubcontrolbox { background: radial-gradient(circle at center,#2e0a16,#1c060e,#0d0307); }
+  .section-meyo       { background: radial-gradient(circle at center,#2d004d,#1a0033,#0d001a); }
+  .section-future     { background: radial-gradient(circle at bottom right,#004d40,#002e2c,#001a1a); }
 
   /* Blobs */
   @keyframes blob {
@@ -121,6 +127,27 @@
     background-clip:text;
     animation: shimmer 6s linear infinite;
   }
+  .shimmer-amber {
+    background: linear-gradient(90deg,#ffd54a,#ff9e2c,#ffd54a);
+    background-size:300% auto;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation: shimmer 6s linear infinite;
+  }
+  .shimmer-indigo {
+    background: linear-gradient(90deg,#818cf8,#c4b5fd,#818cf8);
+    background-size:300% auto;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation: shimmer 6s linear infinite;
+  }
+  .shimmer-rose {
+    background: linear-gradient(90deg,#fb7185,#fda4af,#fb7185);
+    background-size:300% auto;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation: shimmer 6s linear infinite;
+  }
 
   /* Pulse dots */
   @keyframes pdot {
@@ -135,9 +162,24 @@
     0%,100% { box-shadow:0 0 0 0 rgba(52,211,153,0.6); }
     50%      { box-shadow:0 0 0 7px rgba(52,211,153,0); }
   }
+  @keyframes pdot-a {
+    0%,100% { box-shadow:0 0 0 0 rgba(255,213,74,0.6); }
+    50%      { box-shadow:0 0 0 7px rgba(255,213,74,0); }
+  }
+  @keyframes pdot-i {
+    0%,100% { box-shadow:0 0 0 0 rgba(129,140,248,0.6); }
+    50%      { box-shadow:0 0 0 7px rgba(129,140,248,0); }
+  }
+  @keyframes pdot-r {
+    0%,100% { box-shadow:0 0 0 0 rgba(251,113,133,0.6); }
+    50%      { box-shadow:0 0 0 7px rgba(251,113,133,0); }
+  }
   .pdot-c { animation: pdot   2s ease-in-out infinite; }
   .pdot-p { animation: pdot-p 2s ease-in-out infinite; }
   .pdot-g { animation: pdot-g 2s ease-in-out infinite; }
+  .pdot-a { animation: pdot-a 2s ease-in-out infinite; }
+  .pdot-i { animation: pdot-i 2s ease-in-out infinite; }
+  .pdot-r { animation: pdot-r 2s ease-in-out infinite; }
 
   /* Cards reveal */
   .card-reveal {
@@ -201,21 +243,154 @@
     <h1 class="text-xl font-bold tracking-tight text-white" style="font-family:Manrope">LAUNCHER</h1>
   </div>
   <div class="hidden md:flex gap-8 items-center">
-    <a class="text-secondary font-bold text-sm tracking-wide hover:opacity-80 transition-opacity" href="#control">Control+</a>
+    <a class="text-amber-300 font-bold text-sm tracking-wide hover:opacity-80 transition-opacity" href="#matrix">Matrix</a>
+    <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#matricula">Matrícula</a>
+    <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#control">Control+</a>
+    <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#clubcontrolbox">ClubControlBox</a>
     <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#meyo">MeYo</a>
-    <a class="text-slate-300 hover:text-white transition-colors text-sm tracking-wide" href="#future">Proyectos</a>
   </div>
 </header>
 
 <!-- ══ DOT NAV ══════════════════════════════════════════ -->
 <div class="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4" id="dot-nav">
-  <button class="dot-nav-item active" onclick="goTo(0)" aria-label="Control+"></button>
-  <button class="dot-nav-item"        onclick="goTo(1)" aria-label="MeYo"></button>
-  <button class="dot-nav-item"        onclick="goTo(2)" aria-label="Proyectos"></button>
+  <button class="dot-nav-item active" onclick="goTo(0)" aria-label="Matrix"></button>
+  <button class="dot-nav-item"        onclick="goTo(1)" aria-label="Matrícula"></button>
+  <button class="dot-nav-item"        onclick="goTo(2)" aria-label="Control+"></button>
+  <button class="dot-nav-item"        onclick="goTo(3)" aria-label="ClubControlBox"></button>
+  <button class="dot-nav-item"        onclick="goTo(4)" aria-label="MeYo"></button>
 </div>
 
 <!-- ══ MAIN ═════════════════════════════════════════════ -->
 <main class="snap-container" id="scroller">
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 0 — MATRIX
+  ══════════════════════════════════════════ -->
+  <section class="snap-section flex items-center justify-center section-matrix" id="matrix">
+
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="blob-a absolute w-[800px] h-[800px] -top-96 -left-96 bg-amber-500/25 rounded-full blur-[120px]"></div>
+      <div class="blob-b absolute w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-500/15 rounded-full blur-[140px]"></div>
+      <div class="blob-c absolute w-[700px] h-[700px] -bottom-64 -right-64 bg-yellow-400/15 rounded-full blur-[130px]"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 pt-16">
+      <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
+
+        <!-- Texto izquierda -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <span class="fu1 px-4 py-1.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold tracking-widest mb-6 inline-flex items-center gap-2 border border-amber-400/30 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-amber-400 pdot-a"></span>
+            EN DESARROLLO
+          </span>
+
+          <h2 class="fu2 text-6xl lg:text-8xl font-extrabold text-white tracking-tighter mb-6 leading-tight">
+            Matrix<br/>
+            <span class="shimmer-amber">Organización.</span>
+          </h2>
+
+          <p class="fu3 text-slate-200 max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed text-lg font-medium">
+            Matrix es tu espacio para guardar información y ordenar el día a día: un flujo diario y un canvas minimalista, al estilo Canva, para anotar ideas con tu propio orden. También reúne los módulos de mini webs en desarrollo. Un sistema vivo, actualizable con nuevas funciones constantemente.
+          </p>
+
+          <div class="fu4">
+            <a href="https://matrix-nuevo-git-995586990098.us-central1.run.app/" target="_blank"
+               class="bh inline-block px-8 py-4 kinetic-gradient-amber text-black font-bold rounded-2xl shadow-2xl shadow-amber-500/40">
+              Abrir Matrix
+            </a>
+          </div>
+        </div>
+
+        <!-- Cards derecha -->
+        <div class="lg:w-1/2 grid grid-cols-2 gap-6">
+
+          <div class="card-reveal d1 ch glass-card p-8 rounded-[3rem] relative overflow-hidden group">
+            <div class="corner-accent bg-amber-400/10"></div>
+            <span class="material-symbols-outlined text-amber-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">calendar_today</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Flujo Diario</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Guarda y organiza tu información de cada día en un canvas minimalista, simple y directo.</p>
+          </div>
+
+          <div class="card-reveal d2 ch glass-card p-8 rounded-[3rem] mt-12 relative overflow-hidden group">
+            <div class="corner-accent bg-orange-400/10"></div>
+            <span class="material-symbols-outlined text-orange-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">widgets</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Módulo Actualizable</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Incluye los módulos de mini webs en desarrollo, con mejoras y nuevas funciones de forma continua.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <a href="#matricula" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Matrícula</span>
+      <span class="material-symbols-outlined text-slate-300">expand_more</span>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 0.5 — MATRÍCULA
+  ══════════════════════════════════════════ -->
+  <section class="snap-section flex items-center justify-center section-matricula" id="matricula">
+
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="blob-a absolute w-[800px] h-[800px] -top-96 -left-96 bg-indigo-600/25 rounded-full blur-[120px]"></div>
+      <div class="blob-b absolute w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-violet-500/15 rounded-full blur-[140px]"></div>
+      <div class="blob-c absolute w-[700px] h-[700px] -bottom-64 -right-64 bg-blue-500/15 rounded-full blur-[130px]"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 pt-16">
+      <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
+
+        <!-- Texto izquierda -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <span class="fu1 px-4 py-1.5 rounded-full bg-indigo-400/20 text-indigo-300 text-xs font-bold tracking-widest mb-6 inline-flex items-center gap-2 border border-indigo-400/30 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-indigo-400 pdot-i"></span>
+            PRÓXIMAMENTE
+          </span>
+
+          <h2 class="fu2 text-6xl lg:text-8xl font-extrabold text-white tracking-tighter mb-6 leading-tight">
+            Matrícula<br/>
+            <span class="shimmer-indigo">Universidad.</span>
+          </h2>
+
+          <p class="fu3 text-slate-200 max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed text-lg font-medium">
+            Matrícula es una web dedicada a organizar todo lo relacionado con la universidad: horarios, cursos, pendientes académicos y trámites. Actualmente en construcción.
+          </p>
+
+          <div class="fu4">
+            <span class="inline-flex items-center gap-2 px-8 py-4 kinetic-gradient-indigo text-white font-bold rounded-2xl shadow-2xl shadow-indigo-500/30 opacity-60 cursor-not-allowed select-none">
+              Próximamente
+            </span>
+          </div>
+        </div>
+
+        <!-- Cards derecha -->
+        <div class="lg:w-1/2 grid grid-cols-2 gap-6">
+
+          <div class="card-reveal d1 ch glass-card p-8 rounded-[3rem] relative overflow-hidden group">
+            <div class="corner-accent bg-indigo-400/10"></div>
+            <span class="material-symbols-outlined text-indigo-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">school</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Organización Académica</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Cursos, horarios y trámites universitarios en un solo lugar.</p>
+          </div>
+
+          <div class="card-reveal d2 ch glass-card p-8 rounded-[3rem] mt-12 relative overflow-hidden group">
+            <div class="corner-accent bg-violet-400/10"></div>
+            <span class="material-symbols-outlined text-violet-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">event_note</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Seguimiento</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Control de pendientes, fechas clave y tareas académicas.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <a href="#control" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Control+</span>
+      <span class="material-symbols-outlined text-slate-300">expand_more</span>
+    </a>
+  </section>
 
   <!-- ══════════════════════════════════════════
        SECCIÓN 1 — CONTROL+
@@ -270,6 +445,70 @@
             <span class="material-symbols-outlined text-blue-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">sensors</span>
             <h3 class="text-2xl font-bold mb-3 text-white">Monitoreo</h3>
             <p class="text-slate-200 text-sm leading-relaxed">Dashboard, productos, movimientos, stock, cotizaciones y opción de clonar o anular movimientos.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <a href="#clubcontrolbox" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
+      <span class="text-[9px] text-slate-300 tracking-widest uppercase">ClubControlBox</span>
+      <span class="material-symbols-outlined text-slate-300">expand_more</span>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 1.5 — CLUBCONTROLBOX
+  ══════════════════════════════════════════ -->
+  <section class="snap-section flex items-center justify-center section-clubcontrolbox" id="clubcontrolbox">
+
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="blob-a absolute w-[800px] h-[800px] -top-96 -left-96 bg-rose-600/25 rounded-full blur-[120px]"></div>
+      <div class="blob-b absolute w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-500/15 rounded-full blur-[140px]"></div>
+      <div class="blob-c absolute w-[700px] h-[700px] -bottom-64 -right-64 bg-pink-500/15 rounded-full blur-[130px]"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 pt-16">
+      <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
+
+        <!-- Texto izquierda -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <span class="fu1 px-4 py-1.5 rounded-full bg-rose-400/20 text-rose-300 text-xs font-bold tracking-widest mb-6 inline-flex items-center gap-2 border border-rose-400/30 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-rose-400 pdot-r"></span>
+            PRÓXIMAMENTE
+          </span>
+
+          <h2 class="fu2 text-6xl lg:text-8xl font-extrabold text-white tracking-tighter mb-6 leading-tight">
+            ClubControlBox<br/>
+            <span class="shimmer-rose">Inventario 2.0.</span>
+          </h2>
+
+          <p class="fu3 text-slate-200 max-w-md mx-auto lg:mx-0 mb-10 leading-relaxed text-lg font-medium">
+            La nueva versión del sistema de inventarios, más rápida y completamente potenciada. Reemplazará a Control+ una vez esté lista.
+          </p>
+
+          <div class="fu4">
+            <span class="inline-flex items-center gap-2 px-8 py-4 kinetic-gradient-rose text-white font-bold rounded-2xl shadow-2xl shadow-rose-500/30 opacity-60 cursor-not-allowed select-none">
+              Próximamente
+            </span>
+          </div>
+        </div>
+
+        <!-- Cards derecha -->
+        <div class="lg:w-1/2 grid grid-cols-2 gap-6">
+
+          <div class="card-reveal d1 ch glass-card p-8 rounded-[3rem] relative overflow-hidden group">
+            <div class="corner-accent bg-rose-400/10"></div>
+            <span class="material-symbols-outlined text-rose-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">bolt</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Rendimiento</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Optimizado para ser más rápido y estable que la versión experimental.</p>
+          </div>
+
+          <div class="card-reveal d2 ch glass-card p-8 rounded-[3rem] mt-12 relative overflow-hidden group">
+            <div class="corner-accent bg-pink-400/10"></div>
+            <span class="material-symbols-outlined text-pink-300 mb-6 text-4xl" style="font-variation-settings:'FILL' 1;">inventory_2</span>
+            <h3 class="text-2xl font-bold mb-3 text-white">Inventario Potenciado</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">Todas las funciones de Control+, mejoradas y ampliadas.</p>
           </div>
 
         </div>
@@ -344,95 +583,13 @@
       </div>
     </div>
 
-    <a href="#future" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity">
-      <span class="text-[9px] text-slate-300 tracking-widest uppercase">Proyectos</span>
-      <span class="material-symbols-outlined text-slate-300">expand_more</span>
-    </a>
-  </section>
-
-  <!-- ══════════════════════════════════════════
-       SECCIÓN 3 — FUTUROS PROYECTOS
-  ══════════════════════════════════════════ -->
-  <section class="snap-section flex items-center justify-center section-future" id="future">
-
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="blob-a absolute w-[70%] h-[70%] -top-1/4 right-0 bg-emerald-500/30 rounded-full blur-[140px] opacity-60"></div>
-      <div class="blob-b absolute w-[60%] h-[60%] -bottom-1/4 -left-1/4 bg-blue-800/40 rounded-full blur-[140px] opacity-60"></div>
-    </div>
-
-    <div class="container mx-auto px-6 relative z-10 pt-16">
-      <div class="max-w-6xl mx-auto">
-
-        <span class="fu1 px-4 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold tracking-widest mb-6 inline-block border border-emerald-400/30 backdrop-blur-sm">
-          LABORATORIO CREATIVO
-        </span>
-
-        <h2 class="fu2 text-7xl lg:text-9xl font-extrabold text-white tracking-tighter mb-8 leading-none">
-          Proyectos<br/>
-          <span class="shimmer-green">Futuros.</span>
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-8 mt-12">
-
-          <div class="card-reveal d1 group cursor-pointer">
-            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card ch">
-              <img alt="Visual creativo abstracto"
-                class="ih w-full h-full object-cover opacity-80"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQFMUPZ7aH9L1iVFhXq-_APhrr5D0qAkn1Uk3WTfjbH0_U0NmDapCFnqXwPBkerwe9kNyOEgHaG6xc6zgDUdAaEIQ2Zw71Fg1JJ4aYwG9-Wsjl15DGeNdadIWnPSbTjNDICQKxGM3eghEpHuns0pImspKgCsz-oMNBwfxwnpYng60dm9Lok6w6Q_cUebtyrFrJHlSkmUp3sFy2hTE1FQ3CRafd9P-Yqx7pHbw6FDdeJv0STQt7bDjnlQY09Qs2HNW47meO78G_dwFK"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <span class="text-white text-xl font-black tracking-tight">Proyecto Alpha</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-reveal d2 group cursor-pointer mt-8">
-            <div class="aspect-[4/5] rounded-[3rem] bg-white/5 border border-white/20 overflow-hidden mb-4 relative glass-card ch">
-              <img alt="Visualización tech neón"
-                class="ih w-full h-full object-cover opacity-80"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuUW41t2iXy2LiFgmlY1M2c_oaeCRVNcJjOjPN0NB-fEzNgGemY23qMz7_hio6WV9HpTeBqHnE7VT65J2044H_wihZ4eLZ3vzlaCr169UjjAVL3n7sr1MKD40ptHB-rPgxmZ6VpNt-Zr1AtPVGeiFkk-XZD7W1AuJc64IAhbx3QsS6X0UgNYdRiMUGTmSGMjJqowmyIgS6LqWil2jI8sv0vy2ujc_jXMWPiA4x7zQyfGK1i6Xwl-7RsCzOKXliY_Z2ZSLDv7y_WgBM"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-cyan-950/90 via-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <span class="text-white text-xl font-black tracking-tight">Proyecto Beta</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-reveal d3 flex flex-col justify-center gap-6">
-            <div class="p-8 glass-card rounded-[2.5rem] border border-emerald-400/20">
-              <p class="text-emerald-300 font-black text-lg mb-2 uppercase tracking-widest">Incubando ideas</p>
-              <p class="text-slate-100 font-medium">Explorando nuevos conceptos en energía cinética urbana y estética líquida.</p>
-            </div>
-            <button
-              class="bh w-20 h-20 rounded-full text-white flex items-center justify-center shadow-2xl self-start group/btn transition-all hover:w-56 overflow-hidden"
-              style="background:linear-gradient(135deg,#ff4b2b,#ff416c)">
-              <span class="material-symbols-outlined text-3xl transition-transform group-hover/btn:-rotate-45">arrow_forward</span>
-              <span class="hidden group-hover/btn:block ml-4 font-black text-lg whitespace-nowrap">EXPLORAR</span>
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <a href="#control" class="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity" style="transform:translateX(-50%)">
-      <span class="material-symbols-outlined text-slate-300 rotate-180">expand_more</span>
+    <a href="#matrix" class="arrow-bounce absolute bottom-8 left-1/2 flex flex-col items-center gap-1 z-10 opacity-40 hover:opacity-80 transition-opacity" style="transform:translateX(-50%)">
       <span class="text-[9px] text-slate-300 tracking-widest uppercase">Inicio</span>
+      <span class="material-symbols-outlined text-slate-300 rotate-180">expand_more</span>
     </a>
   </section>
 
 </main>
-
-<!-- ══ BOTTOM NAV (móvil) ════════════════════════════════ -->
-<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex justify-around items-center px-4 py-4 bg-white/10 backdrop-blur-3xl rounded-[2.5rem] z-50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/20">
-  <a class="flex items-center justify-center bg-secondary text-black rounded-full p-3 shadow-lg" href="#control">
-    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">inventory_2</span>
-  </a>
-  <a class="flex items-center justify-center text-slate-200 p-3 hover:text-white" href="#meyo">
-    <span class="material-symbols-outlined">psychology</span>
-  </a>
-  <a class="flex items-center justify-center text-slate-200 p-3 hover:text-white" href="#future">
-    <span class="material-symbols-outlined">rocket_launch</span>
-  </a>
-</nav>
 
 <!-- ══ FAB ═══════════════════════════════════════════════ -->
 <button
@@ -446,9 +603,11 @@
   const scroller  = document.getElementById('scroller');
   const dotItems  = document.querySelectorAll('.dot-nav-item');
   const sections  = [
+    document.getElementById('matrix'),
+    document.getElementById('matricula'),
     document.getElementById('control'),
-    document.getElementById('meyo'),
-    document.getElementById('future')
+    document.getElementById('clubcontrolbox'),
+    document.getElementById('meyo')
   ];
 
   function goTo(i) {
